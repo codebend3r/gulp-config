@@ -1,0 +1,20 @@
+{
+  "name": "gulp-config",
+  "version": "0.0.1",
+  "description": "gulp configuration utility with predefined paths for js, html, images, app, unit tests etc.",
+  "repository": "https://github.com/crivas/gulp-config",
+  "main": "index.js",
+  "author": "Chester Rivas",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-help": "^1.6.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-util": "^3.0.6",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5"
+  }
+}
