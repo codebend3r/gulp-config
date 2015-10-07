@@ -1,16 +1,19 @@
 'use strict';
 
+/**
+ * @author Chester Rivas
+ * @description a default scaffolding for dynamically including gulp tasks and a default config object which is used to reference paths
+ */
+
 var gulp = require('gulp-help')(require('gulp')),
   gutil = require('gulp-util'),
   plugins = require('gulp-load-plugins')(),
-  config = require('./gulp.config'),
   _ = require('underscore'),
   config = {};
 
 config.coverage = 'coverage';
 config.jsdoc = 'jsdoc';
 config.buildFolder = 'builds';
-config.filename = 'ute-ui';
 config.app = 'app';
 config.jsPath = config.app + '/js';
 config.scssPath = config.app + '/scss';
@@ -24,24 +27,27 @@ config.browserifyPath = config.app + '/browserify';
 config.gulpDir = './gulp-tasks/';
 
 /**
- * dynamically requires a gulp task
+ * @description dynamically requires a gulp task
  * @param task
  * @type {function}
- * @returns {*}
+ * @returns {gulp}
  */
 config.getTask = function (task) {
   return require(config.gulpDir + task)(gulp, plugins, config, gutil);
 };
 
 /**
- * loop through external gulp names (config.externalGulpTasks)
+ * @description registers externalGulpTasks, and loops through external gulp names (config.externalGulpTasks)
  * @type {function}
  */
-config.registerGulpTasks = function(tasks) {
+config.registerGulpTasks = function (tasks) {
 
   if (!_.isUndefined(tasks)) {
     config.externalGulpTasks = config.externalGulpTasks.concat(tasks);
+  } else {
+    config.externalGulpTasks = tasks;
   }
+
   _.each(config.externalGulpTasks, function (task) {
     // defines a new task in a loop
     if (task.dependencies && task.dependencies.length > 0) {
@@ -50,11 +56,12 @@ config.registerGulpTasks = function(tasks) {
       gulp.task(task.name, task.description, config.getTask(task.name));
     }
   });
-}
+
+};
 
 config.dist = 'dist';
 config.port = 8008;
 config.externalGulpTasks = [];
 
-
+// export
 module.exports = config;
