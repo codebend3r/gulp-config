@@ -1,5 +1,5 @@
 {
-  "name": "gulp-config",
+  "name": "@crivas/gulp-config",
   "version": "0.0.1",
   "description": "gulp configuration utility with predefined paths for js, html, images, app, unit tests etc.",
   "repository": "https://github.com/crivas/gulp-config",
